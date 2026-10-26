@@ -130,7 +130,7 @@ h1 { margin: 0; font-size: 28px; line-height: 1.45; font-weight: 700; }
 .map-btn::before { content: ""; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; }
 .map-btn.naver::before { background: #03C75A; }
 .map-btn.kakao::before { background: #FEE500; box-shadow: 0 0 0 1px #d8c300; }
-.map-btn.google::before { background: #4285F4; }
+.map-btn.tmap::before { background: #E6302B; }
 
 .map-img {
   position: relative; display: block; margin-top: 20px;
@@ -168,6 +168,8 @@ h1 { margin: 0; font-size: 28px; line-height: 1.45; font-weight: 700; }
   background: var(--gold); color: #fff;
   box-shadow: 0 4px 12px rgba(140, 106, 47, 0.3);
 }
+.sms-label { margin: 0 0 12px; font-size: 18px; font-weight: 700; color: var(--gold); }
+.sms-tip { margin: 12px 0 0; font-size: 16px; color: var(--muted); }
 .sms:active, .chip:active, .map-btn:active { transform: scale(0.97); }
 
 .closing { padding-top: 24px; }

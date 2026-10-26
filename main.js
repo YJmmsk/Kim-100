@@ -43,6 +43,34 @@
     }
   });
 
+  // 티맵: 앱으로 바로 열고, 앱이 없으면 스토어로 안내
+  // 좌표(TMAP_X=경도, TMAP_Y=위도)가 있으면 길안내, 없으면 장소명 검색
+  var TMAP_NAME = '라미컨벤션웨딩';
+  var TMAP_X = null;
+  var TMAP_Y = null;
+  var ua = navigator.userAgent;
+  var isAndroid = /Android/i.test(ua);
+  var isIOS = /iPhone|iPad|iPod/i.test(ua) || (/Macintosh/.test(ua) && 'ontouchend' in document);
+  var tmapQuery = (TMAP_X && TMAP_Y)
+    ? 'route?rGoName=' + encodeURIComponent(TMAP_NAME) + '&rGoX=' + TMAP_X + '&rGoY=' + TMAP_Y
+    : 'search?name=' + encodeURIComponent(TMAP_NAME);
+  document.getElementById('tmap').addEventListener('click', function (ev) {
+    if (!isAndroid && !isIOS) return; // PC는 티맵 홈페이지로
+    ev.preventDefault();
+    if (isAndroid) {
+      // intent 링크는 앱이 없으면 플레이스토어로 자동 이동
+      location.href = 'intent://' + tmapQuery + '#Intent;scheme=tmap;package=com.skt.tmap.ku;end';
+      return;
+    }
+    var start = Date.now();
+    location.href = 'tmap://' + tmapQuery;
+    setTimeout(function () {
+      if (!document.hidden && Date.now() - start < 2500) {
+        location.href = 'https://apps.apple.com/kr/app/id431589174';
+      }
+    }, 1500);
+  });
+
   // 스크롤 시 페이드인
   var items = document.querySelectorAll('.reveal');
   if ('IntersectionObserver' in window) {
