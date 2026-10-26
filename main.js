@@ -1,6 +1,19 @@
 (function () {
   document.documentElement.classList.add('js');
 
+  // 첫 화면 높이 고정: 처음 열린 높이로 정하고, 가로 폭이 바뀔 때(화면 회전)만 다시 잰다.
+  // 카카오톡 등 인앱 브라우저는 위아래 바가 숨을 때 화면 높이가 커져 첫 화면이 늘어나기 때문.
+  var root = document.documentElement;
+  var lastW = 0;
+  function lockCoverHeight() {
+    var w = window.innerWidth;
+    if (w === lastW) return;
+    lastW = w;
+    root.style.setProperty('--cover-h', window.innerHeight + 'px');
+  }
+  lockCoverHeight();
+  window.addEventListener('resize', lockCoverHeight);
+
   // D-day: 보는 사람의 시간대와 무관하게 한국 시간(UTC+9) 날짜 기준으로 계산
   var EVENT_KST = Date.UTC(2026, 11, 12); // 2026-12-12 (KST 날짜)
   var DAY = 86400000;
