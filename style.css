@@ -173,18 +173,12 @@ h1 { margin: 0; font-size: 28px; line-height: 1.45; font-weight: 700; }
 }
 .sms-label { margin: 0 0 12px; font-size: 18px; font-weight: 700; color: var(--gold); }
 .sms-tip { margin: 12px 0 0; font-size: 16px; color: var(--muted); }
-.sms-example {
-  margin: 20px auto 0; max-width: 320px; padding: 16px 18px;
-  border: 1.5px dashed var(--gold-soft); border-radius: 12px; background: #fff;
+.sms-example { margin: 0 0 14px; font-size: 15px; color: var(--muted); }
+.sms-example span {
+  display: inline-block; margin-left: 4px; padding: 2px 10px;
+  border-radius: 999px; background: var(--paper);
+  color: var(--ink); font-weight: 600;
 }
-.sms-example p { margin: 0; }
-.sms-example-title { font-size: 15px; font-weight: 700; color: var(--gold); }
-.sms-example-body {
-  display: inline-block; margin-top: 10px !important; padding: 8px 16px;
-  border-radius: 16px 16px 16px 4px; background: var(--paper);
-  font-size: 18px; font-weight: 700; color: var(--ink);
-}
-.sms-example-note { margin-top: 10px !important; font-size: 15px; color: var(--muted); }
 .sms:active, .chip:active, .map-btn:active { transform: scale(0.97); }
 
 .closing { padding-top: 24px; }
