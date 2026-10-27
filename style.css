@@ -173,7 +173,7 @@ h1 { margin: 0; font-size: 28px; line-height: 1.45; font-weight: 700; }
 }
 .sms-label { margin: 0 0 12px; font-size: 18px; font-weight: 700; color: var(--gold); }
 .sms-tip { margin: 12px 0 0; font-size: 16px; color: var(--muted); }
-.sms-example { margin: 0 0 14px; font-size: 15px; color: var(--muted); }
+.sms-example { margin: 0 0 22px; font-size: 15px; color: var(--muted); }
 .sms-example span {
   display: inline-block; margin-left: 4px; padding: 2px 10px;
   border-radius: 999px; background: var(--paper);
