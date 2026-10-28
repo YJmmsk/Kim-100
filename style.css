@@ -205,3 +205,9 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: calc(3px
   .scroll-hint { animation: none; }
   .js .reveal { opacity: 1; transform: none; transition: none; }
 }
+
+/* 아이패드·맥: 본문 배경을 화면 양쪽 끝까지 채우고, 글·버튼은 가운데 휴대폰 폭으로 유지 */
+@media (min-width: 700px) {
+  .card { max-width: none; box-shadow: none; }
+  .card > * { max-width: calc(432px * var(--ui)); margin-left: auto; margin-right: auto; }
+}
