@@ -10,6 +10,9 @@
     if (w === lastW) return;
     lastW = w;
     root.style.setProperty('--cover-h', window.innerHeight + 'px');
+    // 큰 화면(아이패드·맥)에서는 글자·여백·사진을 화면 크기에 맞춰 키움. 기준은 휴대폰 약 400×760
+    var ui = Math.min(w / 400, window.innerHeight / 760);
+    root.style.setProperty('--ui', Math.max(1, Math.min(ui, 1.5)).toFixed(3));
   }
   lockCoverHeight();
   window.addEventListener('resize', lockCoverHeight);
