@@ -1,21 +1,26 @@
 (function () {
   document.documentElement.classList.add('js');
 
-  // 첫 화면 높이 고정: 처음 열린 높이로 정하고, 가로 폭이 바뀔 때(화면 회전)만 다시 잰다.
-  // 카카오톡 등 인앱 브라우저는 위아래 바가 숨을 때 화면 높이가 커져 첫 화면이 늘어나기 때문.
+  // 첫 화면 높이와 화면 배율(--ui)을 창 크기에 맞춤.
+  // 휴대폰(폭 700px 미만): 처음 열린 높이로 고정하고 폭이 바뀔 때(화면 회전)만 다시 잰다.
+  //   카카오톡 등 인앱 브라우저는 위아래 바가 숨을 때 높이가 커져 첫 화면이 늘어나기 때문.
+  // 아이패드·맥(폭 700px 이상): 창 크기가 바뀔 때마다 다시 재서 첫 화면이 창에 딱 맞게 한다.
+  //   단, 본문을 읽는 중에는 내용이 밀리지 않도록 맨 위로 돌아왔을 때 맞춘다.
   var root = document.documentElement;
-  var lastW = 0;
-  function lockCoverHeight() {
-    var w = window.innerWidth;
-    if (w === lastW) return;
-    lastW = w;
-    root.style.setProperty('--cover-h', window.innerHeight + 'px');
-    // 큰 화면(아이패드·맥)에서는 글자·여백·사진을 화면 크기에 맞춰 키움. 기준은 휴대폰 약 400×760
-    var ui = Math.min(w / 400, window.innerHeight / 760);
+  var lastW = 0, lastH = 0;
+  function fitCover() {
+    var w = window.innerWidth, h = window.innerHeight;
+    if (w === lastW && (w < 700 || h === lastH)) return;
+    if (w === lastW && window.scrollY > 10) return;
+    lastW = w; lastH = h;
+    root.style.setProperty('--cover-h', h + 'px');
+    // 큰 화면에서는 글자·여백·사진을 화면 크기에 맞춰 키움. 기준은 휴대폰 약 400×760
+    var ui = Math.min(w / 400, h / 760);
     root.style.setProperty('--ui', Math.max(1, Math.min(ui, 1.5)).toFixed(3));
   }
-  lockCoverHeight();
-  window.addEventListener('resize', lockCoverHeight);
+  fitCover();
+  window.addEventListener('resize', fitCover);
+  window.addEventListener('scroll', function () { if (window.scrollY <= 10) fitCover(); }, { passive: true });
 
   // D-day: 보는 사람의 시간대와 무관하게 한국 시간(UTC+9) 날짜 기준으로 계산
   var EVENT_KST = Date.UTC(2026, 11, 12); // 2026-12-12 (KST 날짜)
