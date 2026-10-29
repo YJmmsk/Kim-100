@@ -45,7 +45,7 @@ a { color: inherit; }
 .cover-bg {
   position: absolute;
   inset: -40px;
-  background: url("images/cover-blur.jpg") center / cover no-repeat;
+  background: url("images/cover-blur.jpg?v=20261029") center / cover no-repeat;
   filter: blur(calc(14px * var(--ui))) saturate(0.9);
   opacity: 0.85;
 }
